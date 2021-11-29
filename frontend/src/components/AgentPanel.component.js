@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios'
 import Listings from './Listings.component'
+import { useLocation } from 'react-router-dom'
 
 export default function AgentPanel() {
     //Create listing form stuff
@@ -18,6 +19,7 @@ export default function AgentPanel() {
     const [yearBuilt, setYearBuilt] = useState(0)
     const [lotSize, setLotSize] = useState(0)
     const [notes, setNotes] = useState('')
+    const location = useLocation().pathname
 
     function onSubmit(e) {
         e.preventDefault()
@@ -25,7 +27,18 @@ export default function AgentPanel() {
         //console.log(listing)
         axios.post("http://localhost:5000/listings/add/", listing).then(res => console.log(res.data)).catch(err => console.log(err.response))
         window.alert(`${address}\nListed`)
+        setDateListed(new Date())
+        setPropertyType(propertyTypes[0])
+        setPrice(0)
+        setAddress('')
+        setCity(cities[0])
+        setNumBathrooms(0)
+        setNumBedrooms(0)
+        setYearBuilt(0)
+        setLotSize(0)
+        setNotes('')
     }
+
 
     //Return
     return (
@@ -84,7 +97,7 @@ export default function AgentPanel() {
                 </form>
             </div>
             {/*Get listings*/}
-            <Listings />
+            <Listings location={location} />
         </div>
     )
 }

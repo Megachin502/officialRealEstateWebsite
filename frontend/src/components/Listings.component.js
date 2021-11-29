@@ -15,7 +15,7 @@ const Listing = props => (
         <td>{props.listing.lotSize} sqft</td>
         <td>{props.listing.notes}</td>
         <td>
-            <Link to={'/edit' + props.listing._id}>edit</Link> | <a href="#" onClick={() => props.deleteListing(props.listing._id)}>delete</a>
+            {props.location === '/agentpanel' ? <div><Link to={'/edit' + props.listing._id}>edit</Link> | <button type="button" onClick={() => props.deleteListing(props.listing._id)}>delete</button></div> : null}
         </td>
     </tr>
 )
@@ -23,21 +23,20 @@ const Listing = props => (
 export default function Listings(props) {
     const [listings, setListings] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/listings').then(res => {
-            setListings(res.data)
-        }).catch(err => console.log(err))
-    }, [listings])
+        axios.get('http://localhost:5000/listings').then(res => setListings(res.data)).catch(err => console.log(err))
+    }, [])
 
     function deleteListing(id) {
         axios.delete('http://localhost:5000/listings/' + id).then(res => console.log(res.data))
         setListings(listings.filter(el => el._id !== id)) //_id automatically created from mongodb for each element
     }
 
+
     return (
         <div>
-            <h3>Posted Listings</h3>
-            <table>
-                <thead>
+            <h3>{props.location === '/agentpanel' ? 'Posted' : 'Available'} Listings</h3>
+            <table className='table'>
+                <thead className='thead-light'>
                     <tr>
                         <th>Date listed</th>
                         <th>Property type</th>
@@ -52,7 +51,7 @@ export default function Listings(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {listings.map(currentListing => <Listing listing={currentListing} deleteListing={deleteListing} key={currentListing._id} />)}
+                    {listings.map(currentListing => <Listing listing={currentListing} deleteListing={deleteListing} key={currentListing._id} location={props.location} />)}
                 </tbody>
             </table>
         </div>

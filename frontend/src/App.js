@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
-//import './App.css';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.component'
 import Listings from './components/Listings.component'
@@ -10,7 +11,7 @@ import AgentPanel from './components/AgentPanel.component'
 function App() {
   return (
     <BrowserRouter>
-      <div className="App App-header">
+      <div>
         <Navbar />
         <Routes>
           <Route path='/' element={<Listings />} />
