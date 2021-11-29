@@ -1,0 +1,60 @@
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+
+const Listing = props => (
+    <tr>
+        <td>{props.listing.dateListed.substring(0, 10)}</td>
+        <td>{props.listing.propertyType}</td>
+        <td>${props.listing.price}</td>
+        <td>{props.listing.address}</td>
+        <td>{props.listing.city}</td>
+        <td>{props.listing.numBathrooms}</td>
+        <td>{props.listing.numBedrooms}</td>
+        <td>{props.listing.yearBuilt}</td>
+        <td>{props.listing.lotSize} sqft</td>
+        <td>{props.listing.notes}</td>
+        <td>
+            <Link to={'/edit' + props.listing._id}>edit</Link> | <a href="#" onClick={() => props.deleteListing(props.listing._id)}>delete</a>
+        </td>
+    </tr>
+)
+
+export default function Listings(props) {
+    const [listings, setListings] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:5000/listings').then(res => {
+            setListings(res.data)
+        }).catch(err => console.log(err))
+    }, [listings])
+
+    function deleteListing(id) {
+        axios.delete('http://localhost:5000/listings/' + id).then(res => console.log(res.data))
+        setListings(listings.filter(el => el._id !== id)) //_id automatically created from mongodb for each element
+    }
+
+    return (
+        <div>
+            <h3>Posted Listings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date listed</th>
+                        <th>Property type</th>
+                        <th>Price</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Bathrooms</th>
+                        <th>Bedrooms</th>
+                        <th>Year built</th>
+                        <th>Lot size</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {listings.map(currentListing => <Listing listing={currentListing} deleteListing={deleteListing} key={currentListing._id} />)}
+                </tbody>
+            </table>
+        </div>
+    )
+}
