@@ -24,7 +24,7 @@ export default function Listings(props) {
     const [listings, setListings] = useState([])
     useEffect(() => {
         axios.get('http://localhost:5000/listings').then(res => setListings(res.data)).catch(err => console.log(err))
-    }, [])
+    })
 
     function deleteListing(id) {
         axios.delete('http://localhost:5000/listings/' + id).then(res => console.log(res.data))
@@ -33,7 +33,8 @@ export default function Listings(props) {
 
 
     return (
-        <div>
+        <div className="padding">
+            <br/>
             <h3>{props.location === '/agentpanel' ? 'Posted' : 'Available'} Listings</h3>
             <table className='table'>
                 <thead className='thead-light'>

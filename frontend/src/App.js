@@ -6,20 +6,21 @@ import Navbar from './components/Navbar.component'
 import Listings from './components/Listings.component'
 import EditListing from './components/EditListing.component'
 import AgentPanel from './components/AgentPanel.component'
-
+import RequirementsChecklist from './components/RequirementsChecklist.component'
 
 function App() {
   return (
-    <BrowserRouter>
+    < BrowserRouter >
       <div>
         <Navbar />
         <Routes>
           <Route path='/' element={<Listings />} />
           <Route path='/edit:id' element={<EditListing />} />
           <Route path='/agentpanel' element={<AgentPanel />} />
+          <Route path='/requirementschecklist' element={<RequirementsChecklist />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

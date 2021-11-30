@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 export default function EditListing() {
     //Create listing form stuff
@@ -43,7 +43,8 @@ export default function EditListing() {
 
     //Return
     return (
-        < div >
+        <div>
+            <Link to='/agentpanel'>Cancel</Link>
             <h3>Edit Listing: {address}</h3>
             <form onSubmit={onSubmit}>
                 <div>

@@ -39,62 +39,66 @@ export default function AgentPanel() {
         setNotes('')
     }
 
-
     //Return
     return (
         <div>
             {/*Create listing form*/}
-            <div>
+            <div className="bgBlue padding">
+                <br />
                 <h3>Create New Listing</h3>
-                <form onSubmit={onSubmit}>
-                    <div>
-                        <label>Date listed: </label>
-                        <DatePicker selected={dateListed} onChange={setDateListed} />
+                <form onSubmit={onSubmit} className="row">
+                    <div className="col-md-2">
+                        <label className="form-label">Date listed: </label>
+                        <DatePicker selected={dateListed} onChange={setDateListed} className="form-control" />
                     </div>
-                    <div>
-                        <label>Property type: </label>
-                        <select required value={propertyType} onChange={(e) => setPropertyType(e.target.value)}>
+                    <div className="col-md-2">
+                        <label className="form-label">Property type: </label>
+                        <select required value={propertyType} onChange={(e) => setPropertyType(e.target.value)} className="form-control">
                             {propertyTypes.map((propertyType) => <option key={propertyType} value={propertyType}>{propertyType}</option>)}
                         </select>
                     </div>
-                    <div>
-                        <label>Price ($): </label>
-                        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
+                    <div className="col-sm-2">
+                        <label className="form-label">Price ($): </label>
+                        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required className="form-control" />
                     </div>
-                    <div>
-                        <label>Address: </label>
-                        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required />
+                    <div className="col-md-3">
+                        <label className="form-label">Address: </label>
+                        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required className="form-control" />
                     </div>
-                    <div>
-                        <label>City: </label>
-                        <select required value={city} onChange={(e) => setCity(e.target.value)}>
+                    <div className="col-md-2">
+                        <label className="form-label">City: </label>
+                        <select required value={city} onChange={(e) => setCity(e.target.value)} className="form-control">
                             {cities.map((city) => <option key={city} value={city}>{city}</option>)}
                         </select>
                     </div>
-                    <div>
-                        <label>Number of bathrooms: </label>
-                        <input type="number" value={numBathrooms} onChange={(e) => setNumBathrooms(e.target.value)} required />
+                    <div className="row">
+                        <div className="col-md-2">
+                            <label className="form-label">Number of bathrooms: </label>
+                            <input type="number" value={numBathrooms} onChange={(e) => setNumBathrooms(e.target.value)} required className="form-control" />
+                        </div>
+                        <div className="col-md-2">
+                            <label className="form-label">Number of bedrooms: </label>
+                            <input type="number" value={numBedrooms} onChange={(e) => setNumBedrooms(e.target.value)} required className="form-control" />
+                        </div>
+                        <div className="col-md-2">
+                            <label className="form-label">Year built: </label>
+                            <input type="number" value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)} required className="form-control" />
+                        </div>
+                        <div className="col-md-2">
+                            <label className="form-label">Lot size (sqft): </label>
+                            <input type="number" value={lotSize} onChange={(e) => setLotSize(e.target.value)} required className="form-control" />
+                        </div>
+
                     </div>
-                    <div>
-                        <label>Number of bedrooms: </label>
-                        <input type="number" value={numBedrooms} onChange={(e) => setNumBedrooms(e.target.value)} required />
+                    <div className="row">
+                        <label className="form-label">Notes: </label>
+                        <textarea type="text" value={notes} onChange={(e) => setNotes(e.target.value)} className="form-control" />
                     </div>
-                    <div>
-                        <label>Year built: </label>
-                        <input type="number" value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)} required />
-                    </div>
-                    <div>
-                        <label>Lot size (sqft): </label>
-                        <input type="number" value={lotSize} onChange={(e) => setLotSize(e.target.value)} required />
-                    </div>
-                    <div>
-                        <label>Notes: </label>
-                        <input type="text" value={notes} onChange={(e) => setNotes(e.target.value)} />
-                    </div>
-                    <div>
-                        <input type="submit" value="Create Listing" />
+                    <div className="row-md-2 navButton">
+                        <input type="submit" value="Create Listing" className="btn btn-secondary navButton" />
                     </div>
                 </form>
+                <br />
             </div>
             {/*Get listings*/}
             <Listings location={location} />
