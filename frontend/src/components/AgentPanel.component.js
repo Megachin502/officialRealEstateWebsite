@@ -21,12 +21,7 @@ export default function AgentPanel() {
     const [notes, setNotes] = useState('')
     const location = useLocation().pathname
 
-    function onSubmit(e) {
-        e.preventDefault()
-        const listing = { dateListed: dateListed, propertyType: propertyType, price: price, address: address, city: city, numBathrooms: numBathrooms, numBedrooms: numBedrooms, yearBuilt: yearBuilt, lotSize: lotSize, notes: notes }
-        //console.log(listing)
-        axios.post("http://localhost:5000/listings/add/", listing).then(res => console.log(res.data)).catch(err => console.log(err.response))
-        window.alert(`${address}\nListed`)
+    function clearForm() {
         setDateListed(new Date())
         setPropertyType(propertyTypes[0])
         setPrice(0)
@@ -38,6 +33,20 @@ export default function AgentPanel() {
         setLotSize(0)
         setNotes('')
     }
+    function onSubmit(e) {
+        e.preventDefault()
+        const listing = { dateListed: dateListed, propertyType: propertyType, price: price, address: address, city: city, numBathrooms: numBathrooms, numBedrooms: numBedrooms, yearBuilt: yearBuilt, lotSize: lotSize, notes: notes }
+        //console.log(listing)
+        axios.post("http://localhost:5000/listings/add/", listing).then(res => {
+            console.log(res.data)
+            clearForm()
+        }).catch(err => {
+            window.alert('Listing unsuccesful')
+            console.log(err.response)
+        })
+
+
+    }
 
     //Return
     return (
@@ -46,30 +55,32 @@ export default function AgentPanel() {
             <div className="bgBlue padding">
                 <br />
                 <h3>Create New Listing</h3>
-                <form onSubmit={onSubmit} className="row">
-                    <div className="col-md-2">
-                        <label className="form-label">Date listed: </label>
-                        <DatePicker selected={dateListed} onChange={setDateListed} className="form-control" />
-                    </div>
-                    <div className="col-md-2">
-                        <label className="form-label">Property type: </label>
-                        <select required value={propertyType} onChange={(e) => setPropertyType(e.target.value)} className="form-control">
-                            {propertyTypes.map((propertyType) => <option key={propertyType} value={propertyType}>{propertyType}</option>)}
-                        </select>
-                    </div>
-                    <div className="col-sm-2">
-                        <label className="form-label">Price ($): </label>
-                        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required className="form-control" />
-                    </div>
-                    <div className="col-md-3">
-                        <label className="form-label">Address: </label>
-                        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required className="form-control" />
-                    </div>
-                    <div className="col-md-2">
-                        <label className="form-label">City: </label>
-                        <select required value={city} onChange={(e) => setCity(e.target.value)} className="form-control">
-                            {cities.map((city) => <option key={city} value={city}>{city}</option>)}
-                        </select>
+                <form onSubmit={onSubmit}>
+                    <div className="row">
+                        <div className="col-md-2">
+                            <label className="form-label">Date listed: </label>
+                            <DatePicker selected={dateListed} onChange={setDateListed} className="form-control" />
+                        </div>
+                        <div className="col-md-2">
+                            <label className="form-label">Property type: </label>
+                            <select required value={propertyType} onChange={(e) => setPropertyType(e.target.value)} className="form-control">
+                                {propertyTypes.map((propertyType) => <option key={propertyType} value={propertyType}>{propertyType}</option>)}
+                            </select>
+                        </div>
+                        <div className="col-md-2">
+                            <label className="form-label">Price ($): </label>
+                            <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required className="form-control" />
+                        </div>
+                        <div className="col-md-3">
+                            <label className="form-label">Address: </label>
+                            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required className="form-control" />
+                        </div>
+                        <div className="col-md-2">
+                            <label className="form-label">City: </label>
+                            <select required value={city} onChange={(e) => setCity(e.target.value)} className="form-control">
+                                {cities.map((city) => <option key={city} value={city}>{city}</option>)}
+                            </select>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col-md-2">
@@ -94,8 +105,15 @@ export default function AgentPanel() {
                         <label className="form-label">Notes: </label>
                         <textarea type="text" value={notes} onChange={(e) => setNotes(e.target.value)} className="form-control" />
                     </div>
-                    <div className="row-md-2 navButton">
-                        <input type="submit" value="Create Listing" className="btn btn-secondary navButton" />
+                    <div className="row">
+                        <div className="col-2">
+                            <input type="submit" value="Create Listing" className="btn btn-secondary navButton" />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-1">
+                            <input type="reset" value="Clear" className="btn btn-secondary navButton" onClick={clearForm} />
+                        </div>
                     </div>
                 </form>
                 <br />

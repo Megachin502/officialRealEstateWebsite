@@ -34,7 +34,7 @@ export default function Listings(props) {
 
     return (
         <div className="padding">
-            <br/>
+            <br />
             <h3>{props.location === '/agentpanel' ? 'Posted' : 'Available'} Listings</h3>
             <table className='table'>
                 <thead className='thead-light'>
@@ -52,7 +52,7 @@ export default function Listings(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {listings.map(currentListing => <Listing listing={currentListing} deleteListing={deleteListing} key={currentListing._id} location={props.location} />)}
+                    {listings.map(currentListing => <Listing listing={currentListing} deleteListing={deleteListing} key={currentListing._id} location={props.location} />).reverse()}
                 </tbody>
             </table>
         </div>

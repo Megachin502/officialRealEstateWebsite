@@ -21,7 +21,8 @@ connection.once('open', () => {
 const listingRouter = require('./routes/listing.route')
 app.use('/listings', listingRouter)
 
-
+const clientRouter = require('./routes/client.route')
+app.use('/clients', clientRouter)
 
 //Start listening to port
 app.listen(port, () => {
