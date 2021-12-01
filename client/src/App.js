@@ -15,7 +15,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Listings />} />
-          <Route path='/edit:id' element={<EditListing />} />
+          <Route path='/edit/:id' element={<EditListing />} />
           <Route path='/agentpanel' element={<AgentPanel />} />
           <Route path='/requirementschecklist' element={<RequirementsChecklist />} />
         </Routes>
