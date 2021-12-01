@@ -24,7 +24,7 @@ export default function ClientOnboardForm() {
     return (
         <div>
             <div className="container">
-                <h3>Client Onboarding (Has no practical use besides posting to database)</h3>
+                <h3>Client Onboarding (has no practical use besides posting to database and to fulfill the 4 GET routes requirement)</h3>
                 <form onSubmit={onSubmit}>
                     <label>Email: </label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
