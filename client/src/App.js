@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, HashRouter } from 'react-router-dom'
 import Navbar from './components/Navbar.component'
 import Listings from './components/Listings.component'
 import EditListing from './components/EditListing.component'
@@ -10,7 +10,7 @@ import RequirementsChecklist from './components/RequirementsChecklist.component'
 
 function App() {
   return (
-    < BrowserRouter >
+    < HashRouter >
       <div>
         <Navbar />
         <Routes>
@@ -20,7 +20,7 @@ function App() {
           <Route path='/requirementschecklist' element={<RequirementsChecklist />} />
         </Routes>
       </div>
-    </BrowserRouter >
+    </HashRouter >
   );
 }
 
