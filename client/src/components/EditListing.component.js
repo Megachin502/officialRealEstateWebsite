@@ -24,7 +24,7 @@ export default function EditListing() {
         const listing = { dateListed: dateListed, propertyType: propertyType, price: price, address: address, city: city, numBathrooms: numBathrooms, numBedrooms: numBedrooms, yearBuilt: yearBuilt, lotSize: lotSize, notes: notes }
         //console.log(listing)
         axios.post("/listings/update/" + id, listing).then(res => console.log(res.data)).catch(err => console.log(err.response))
-        window.location = '/agentpanel'
+        window.location = '#/agentpanel'
     }
     useEffect(() => {
         axios.get('/listings/' + id).then(res => {
