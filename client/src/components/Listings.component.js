@@ -15,7 +15,7 @@ const Listing = props => (
         <td>{props.listing.lotSize} sqft</td>
         <td>{props.listing.notes}</td>
         <td>
-            {props.location === '/agentpanel' ? <div><Link to={'/edit' + props.listing._id}>edit</Link> | <button type="button" onClick={() => props.deleteListing(props.listing._id)}>delete</button></div> : null}
+            {props.location === '/agentpanel' ? <div><Link to={'/edit/' + props.listing._id}>edit</Link> | <button type="button" onClick={() => props.deleteListing(props.listing._id)}>delete</button></div> : null}
         </td>
     </tr>
 )
