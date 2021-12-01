@@ -24,6 +24,11 @@ app.use('/listings', listingRouter)
 const clientRouter = require('./routes/client.route')
 app.use('/clients', clientRouter)
 
+//Checking if app on heroku
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+}
+
 //Start listening to port
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
