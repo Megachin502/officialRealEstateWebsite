@@ -23,11 +23,11 @@ export default function EditListing() {
         e.preventDefault()
         const listing = { dateListed: dateListed, propertyType: propertyType, price: price, address: address, city: city, numBathrooms: numBathrooms, numBedrooms: numBedrooms, yearBuilt: yearBuilt, lotSize: lotSize, notes: notes }
         //console.log(listing)
-        axios.post("http://localhost:5000/listings/update/" + id, listing).then(res => console.log(res.data)).catch(err => console.log(err.response))
+        axios.post("/listings/update/" + id, listing).then(res => console.log(res.data)).catch(err => console.log(err.response))
         window.location = '/agentpanel'
     }
     useEffect(() => {
-        axios.get('http://localhost:5000/listings/' + id).then(res => {
+        axios.get('/listings/' + id).then(res => {
             setDateListed(new Date(res.data.dateListed))
             setPropertyType(res.data.propertyType)
             setPrice(res.data.price)

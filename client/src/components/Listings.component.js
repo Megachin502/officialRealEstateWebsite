@@ -23,11 +23,11 @@ const Listing = props => (
 export default function Listings(props) {
     const [listings, setListings] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/listings').then(res => setListings(res.data)).catch(err => console.log(err))
+        axios.get('/listings').then(res => setListings(res.data)).catch(err => console.log(err))
     })
 
     function deleteListing(id) {
-        axios.delete('http://localhost:5000/listings/' + id).then(res => console.log(res.data))
+        axios.delete('/listings/' + id).then(res => console.log(res.data))
         setListings(listings.filter(el => el._id !== id)) //_id automatically created from mongodb for each element
     }
 

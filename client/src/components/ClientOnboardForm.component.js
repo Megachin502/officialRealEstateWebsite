@@ -10,7 +10,7 @@ export default function ClientOnboardForm() {
         e.preventDefault()
         const client = { email: email, name: name, phoneNumber: phoneNumber, notes: notes }
         //console.log(listing)
-        axios.post("http://localhost:5000/clients/add/", client).then(res => {
+        axios.post("/clients/add/", client).then(res => {
             console.log(res.data)
             setEmail('')
             setName('')

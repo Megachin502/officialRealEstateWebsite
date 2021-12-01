@@ -37,7 +37,7 @@ export default function AgentPanel() {
         e.preventDefault()
         const listing = { dateListed: dateListed, propertyType: propertyType, price: price, address: address, city: city, numBathrooms: numBathrooms, numBedrooms: numBedrooms, yearBuilt: yearBuilt, lotSize: lotSize, notes: notes }
         //console.log(listing)
-        axios.post("http://localhost:5000/listings/add/", listing).then(res => {
+        axios.post("/listings/add/", listing).then(res => {
             console.log(res.data)
             clearForm()
         }).catch(err => {
