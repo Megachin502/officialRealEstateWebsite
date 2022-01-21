@@ -4,7 +4,7 @@ export default function Navbar() {
     return (
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
             <div>
-                <h1 className='navbar-brand padding underline'>Real Estate Listings Management Website<code> by Elvis Lam (Langara College CPSC 2600 Final Project - Fall 2021)</code></h1>
+                <h1 className='navbar-brand padding underline'>Real Estate Listings Management Website<code> - Demo</code></h1>
                 <div className='container-fluid'>
                     <ul className='navbar-nav'>
                         <li className='nav-item'>
@@ -13,9 +13,13 @@ export default function Navbar() {
                         <li className='nav-item'>
                             <Link to='/agentpanel' className='nav-link'>Agent Panel</Link>
                         </li>
-                        <li className='nav-item'>
+                        {
+                            /*
+                            <li className='nav-item'>
                             <Link to='/requirementschecklist' className='nav-link'>Requirements Checklist</Link>
-                        </li>
+                            </li>
+                            */
+                        }
                     </ul>
                 </div>
             </div>
